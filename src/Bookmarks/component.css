@@ -27,16 +27,24 @@
 }
 
 .BookmarkFolder {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, var(--size-folder-item-width));
+  display: flex;
   gap: var(--size-folder-item-gap);
   padding: var(--size-folder-padding-y) var(--size-folder-padding-x);
   border-radius: 3px;
   background-color: var(--palette-2);
 }
 
+.BookmarkList {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--size-folder-item-width));
+  gap: var(--size-folder-item-gap);
+  border-radius: 3px;
+}
+
 .BookmarkFolder__Heading {
   font-size: 120%;
+  width: var(--size-folder-item-width);
 }
 
 .Bookmark {

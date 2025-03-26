@@ -119,7 +119,7 @@ type BookmarkListProps = {
 const BookmarkList: FC<BookmarkListProps> = ({ folder, shortcutMap, search, drag, setDrag }) => {
   const bookmarks = reorderBookmarks(drag, folder.id, filterBookmarks(folder.bookmarks, search))
   return (
-    <>
+    <div class="BookmarkList">
       {bookmarks.map((b, index) => (
         <BookmarkDragDrop
           key={b.id}
@@ -131,7 +131,7 @@ const BookmarkList: FC<BookmarkListProps> = ({ folder, shortcutMap, search, drag
           <BookmarkComponent bookmark={b} shortcutMap={shortcutMap} dragActive={drag ? true : undefined} />
         </BookmarkDragDrop>
       ))}
-    </>
+    </div>
   )
 }
 
