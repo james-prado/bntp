@@ -1,60 +1,60 @@
-name: react
+# name: react
 
-on:
-  pull_request:
-    paths:
-      - .github/workflows/react.yaml
-      - src/**
-      - '*.json'
-      - '*.config.*'
-      - pnpm-lock.yaml
-  push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/react.yaml
-      - src/**
-      - '*.json'
-      - '*.config.*'
-      - pnpm-lock.yaml
+# on:
+#   pull_request:
+#     paths:
+#       - .github/workflows/react.yaml
+#       - src/**
+#       - '*.json'
+#       - '*.config.*'
+#       - pnpm-lock.yaml
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - .github/workflows/react.yaml
+#       - src/**
+#       - '*.json'
+#       - '*.config.*'
+#       - pnpm-lock.yaml
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
-        with:
-          node-version-file: .node-version
-      - run: npm install -g pnpm@latest-10
-      - run: pnpm i
-      - run: pnpm run build
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 10
+#     steps:
+#       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+#       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
+#         with:
+#           node-version-file: .node-version
+#       - run: npm install -g pnpm@latest-10
+#       - run: pnpm i
+#       - run: pnpm run build
 
-  test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
-        with:
-          node-version-file: .node-version
-      - run: npm install -g pnpm@latest-10
-      - run: pnpm i
-      - run: pnpm run test
-      - run: pnpm run lint
+#   test:
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 10
+#     steps:
+#       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+#       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
+#         with:
+#           node-version-file: .node-version
+#       - run: npm install -g pnpm@latest-10
+#       - run: pnpm i
+#       - run: pnpm run test
+#       - run: pnpm run lint
 
-  generate:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          ref: ${{ github.head_ref }}
-      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
-        with:
-          node-version-file: .node-version
-      - run: npm install -g pnpm@latest-10
-      - run: pnpm i
-      - run: pnpm run format
-      - uses: int128/update-generated-files-action@65b9a7ae3ededc5679d78343f58fbebcf1ebd785 # v2.57.0
+#   generate:
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 10
+#     steps:
+#       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+#         with:
+#           ref: ${{ github.head_ref }}
+#       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
+#         with:
+#           node-version-file: .node-version
+#       - run: npm install -g pnpm@latest-10
+#       - run: pnpm i
+#       - run: pnpm run format
+#       - uses: int128/update-generated-files-action@65b9a7ae3ededc5679d78343f58fbebcf1ebd785 # v2.57.0

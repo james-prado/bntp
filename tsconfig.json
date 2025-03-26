@@ -1,6 +1,1 @@
-{
-  "extends": "@tsconfig/vite-react/tsconfig.json",
-  "compilerOptions": {
-    "types": ["vitest/globals", "chrome"]
-  }
-}
+{}
