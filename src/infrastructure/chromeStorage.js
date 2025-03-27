@@ -1,6 +1,7 @@
-import { ChromeContext } from './chrome';
 import { useContext, useEffect, useState } from 'react';
+import { ChromeContext } from './chrome';
 import { useLocalStorageCache } from './localStorageCache';
+
 export const useChromeStorage = (spec, initialValue) => {
     const chrome = useContext(ChromeContext);
     const storageArea = chrome.storage[spec.areaName];

@@ -1,11 +1,11 @@
-// @ts-check
-
-import eslint from '@eslint/js'
-import reactJsxRuntime from 'eslint-plugin-react/configs/jsx-runtime.js'
-import reactRecommended from 'eslint-plugin-react/configs/recommended.js'
+import eslint from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import reactJsxRuntime from 'eslint-plugin-react/configs/jsx-runtime.js';
+import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
+import { defineConfig } from 'eslint/config';
+import globals from 'globals';
 
-export default [
+export default defineConfig([
 	{ ignores: ['.git', 'node_modules', 'dist', 'eslint.config.js', '.storybook'] },
 	eslint.configs.recommended,
 	eslintConfigPrettier,
@@ -16,6 +16,11 @@ export default [
 			parserOptions: {
 				project: true,
 			},
+			globals: {
+				Shopify: 'readonly',
+				...globals.browser,
+				...globals.webextensions,
+			},
 		},
 		settings: {
 			react: {
@@ -23,7 +28,7 @@ export default [
 			},
 		},
 		rules: {
-			'sort-imports': ['error'],
+			'react/prop-types': ['off'],
 		},
 	},
-];
+]);

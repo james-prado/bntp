@@ -21,6 +21,7 @@
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^10.1.1",
 		"eslint-plugin-react": "^7.34.1",
+		"globals": "^16.0.0",
 		"jsdom": "^26.0.0",
 		"pnpm": "10.6.5",
 		"prettier": "3.5.3",

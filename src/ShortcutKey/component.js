@@ -1,5 +1,6 @@
-import { shortcutKeyOf } from './model';
 import { useGlobalKey } from './infrastructure';
+import { shortcutKeyOf } from './model';
+
 const ShortcutKeyComponent = ({ bookmarkFolders, shortcutMap }) => {
     const bookmarks = bookmarkFolders.flatMap((f) => f.bookmarks);
     useGlobalKey((e) => {
@@ -22,4 +23,5 @@ const ShortcutKeyComponent = ({ bookmarkFolders, shortcutMap }) => {
     });
     return null;
 };
+
 export default ShortcutKeyComponent;

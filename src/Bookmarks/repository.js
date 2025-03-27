@@ -1,7 +1,8 @@
 import { FolderCollapse, isBookmarkFolderIDArray } from './model';
-import { ChromeContext } from '../infrastructure/chrome';
 import { useContext, useEffect, useState } from 'react';
+import { ChromeContext } from '../infrastructure/chrome';
 import { useChromeStorage } from '../infrastructure/chromeStorage';
+
 export const useBookmarkFolders = () => {
     const [bookmarkFolders, setBookmarkFolders] = useState([]);
     const chrome = useContext(ChromeContext);
