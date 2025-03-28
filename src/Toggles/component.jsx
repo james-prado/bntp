@@ -12,22 +12,6 @@ const TogglesComponent = () => {
 				/>
 				Indent
 			</label>
-			<label>
-				<input
-					type="checkbox"
-					checked={toggles.bookmarks}
-					onChange={(e) => setToggles({ ...toggles, bookmarks: e.target.checked })}
-				/>
-				Bookmarks
-			</label>
-			<label>
-				<input
-					type="checkbox"
-					checked={toggles.topSites}
-					onChange={(e) => setToggles({ ...toggles, topSites: e.target.checked })}
-				/>
-				Top Sites
-			</label>
 		</form>
 	)
 }

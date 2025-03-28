@@ -9,17 +9,6 @@
 	--theme-palette-3: #fdfdfd;
 }
 
-:root[data-theme='solarized'] {
-	--theme-palette-03: #002b36;
-	--theme-palette-02: #073642;
-	--theme-palette-01: #586e75;
-	--theme-palette-00: #657b83;
-	--theme-palette-0: #839496;
-	--theme-palette-1: #93a1a1;
-	--theme-palette-2: #eee8d5;
-	--theme-palette-3: #fdf6e3;
-}
-
 :root[data-color-scheme='light'] {
 	--palette-3: var(--theme-palette-3);
 	--palette-2: var(--theme-palette-2);

@@ -21,6 +21,7 @@ dialog.Preferences::backdrop {
 	display: grid;
 	gap: var(--size-gap);
 	padding: var(--size-wide-gap);
+	min-width: 40ch;
 }
 
 .Preferences h2 {
@@ -29,12 +30,17 @@ dialog.Preferences::backdrop {
 	font-size: 100%;
 	color: var(--palette-00);
 	text-transform: uppercase;
+	font-size: 18px;
+}
+
+.Preferences h2:not(:first-of-type) {
+	margin-top: calc(var(--size-gap) * 2);
 }
 
 .Preferences label,
 .Preferences button,
 .Preferences a[href] {
-	display: inline-block;
+	display: flex;
 	margin-right: var(--size-preference-item-margin);
 	padding: var(--size-preference-item-padding);
 	font: inherit;
@@ -42,7 +48,18 @@ dialog.Preferences::backdrop {
 	border-radius: 3px;
 	border: none;
 	background-color: var(--palette-2);
+	flex-direction: row;
+	align-items: center;
+	flex-wrap: nowrap;
+	font-size: 15px;
 }
+
+.Preferences label > input[type="checkbox"],
+.Preferences label > input[type="radio"] {
+	margin: 0;
+	margin-right: 8px;
+}
+
 
 .Preferences label:hover,
 .Preferences button:hover,

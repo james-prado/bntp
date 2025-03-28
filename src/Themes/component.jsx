@@ -21,7 +21,7 @@ const ThemesComponent = () => {
 					</label>
 				))}
 			</form>
-			<form>
+			{allThemes.length > 1 ? <form>
 				{allThemes.map((theme) => (
 					<label key={theme}>
 						<input
@@ -34,7 +34,7 @@ const ThemesComponent = () => {
 						{capitalize(theme)}
 					</label>
 				))}
-			</form>
+			</form> : null}
 		</>
 	)
 }

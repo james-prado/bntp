@@ -7,15 +7,11 @@ const validateObject = (o, validator) =>
 	Object.entries(o).every(([key, prop]) => key in validator && validator[key](prop))
 
 const togglesValidator = {
-	topSites: (prop) => typeof prop === 'boolean',
-	bookmarks: (prop) => typeof prop === 'boolean',
 	indent: (prop) => typeof prop === 'boolean',
 }
 
 export const isToggles = (o) => validateObject(o, togglesValidator)
 
 export const defaultToggles = {
-	bookmarks: true,
-	topSites: true,
 	indent: false,
 }

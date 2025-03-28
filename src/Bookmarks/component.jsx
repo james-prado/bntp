@@ -29,7 +29,7 @@ const BookmarkFoldersComponent = ({ bookmarkFolders, shortcutMap, search }) => {
 	const [drag, setDrag] = useState()
 	return (
 		<div className="BookmarkFolders">
-			{bookmarkFolders.map((f, i) => (
+			{bookmarkFolders.filter(f => f.depth <= 1).map((f, i) => (
 				<BookmarkFolderIndent key={i} depth={toggles.indent ? f.depth : 0}>
 					<BookmarkFolderCollapse folder={f} folderCollapse={folderCollapse} setFolderCollapse={setFolderCollapse}>
 						<BookmarkList folder={f} shortcutMap={shortcutMap} search={search} drag={drag} setDrag={setDrag} />
