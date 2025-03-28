@@ -1,30 +1,32 @@
-import React, { useContext, useState } from 'react';
-import BookmarkEditorComponent from '../BookmarkEditor/component';
-import { FaviconContext } from '../infrastructure/favicon';
-import LinkComponent from '../Link/component';
-import ShortcutKeyComponent from '../ShortcutKey/component';
-import { useShortcutMap } from '../ShortcutKey/repository';
-import { useToggles } from '../Toggles/repository';
-import './component.css';
-import { filterBookmarks } from './model';
-import { moveBookmark, useBookmarkFolders, useFolderCollapse } from './repository';
-import { Drag, reorderBookmarks } from './viewmodel';
+import React, { useContext, useState } from 'react'
+import BookmarkEditorComponent from '../BookmarkEditor/component'
+import { FaviconContext } from '../infrastructure/favicon'
+import LinkComponent from '../Link/component'
+import ShortcutKeyComponent from '../ShortcutKey/component'
+import { useShortcutMap } from '../ShortcutKey/repository'
+import { useToggles } from '../Toggles/repository'
+import './component.css'
+import { filterBookmarks } from './model'
+import { moveBookmark, useBookmarkFolders, useFolderCollapse } from './repository'
+import { Drag, reorderBookmarks } from './viewmodel'
 
 const BookmarksComponent = ({ search }) => {
-	const bookmarkFolders = useBookmarkFolders();
-	const [shortcutMap] = useShortcutMap();
+	const bookmarkFolders = useBookmarkFolders()
+	const [shortcutMap] = useShortcutMap()
 	return (
 		<>
 			<BookmarkFoldersComponent bookmarkFolders={bookmarkFolders} shortcutMap={shortcutMap} search={search} />
 			<ShortcutKeyComponent bookmarkFolders={bookmarkFolders} shortcutMap={shortcutMap} />
 		</>
-	);
-};
-export default BookmarksComponent;
+	)
+}
+
+export default BookmarksComponent
+
 const BookmarkFoldersComponent = ({ bookmarkFolders, shortcutMap, search }) => {
-	const [toggles] = useToggles();
-	const [folderCollapse, setFolderCollapse] = useFolderCollapse();
-	const [drag, setDrag] = useState();
+	const [toggles] = useToggles()
+	const [folderCollapse, setFolderCollapse] = useFolderCollapse()
+	const [drag, setDrag] = useState()
 	return (
 		<div className="BookmarkFolders">
 			{bookmarkFolders.map((f, i) => (
@@ -35,13 +37,15 @@ const BookmarkFoldersComponent = ({ bookmarkFolders, shortcutMap, search }) => {
 				</BookmarkFolderIndent>
 			))}
 		</div>
-	);
-};
+	)
+}
+
 const BookmarkFolderIndent = ({ depth, children }) => (
 	<div className="BookmarkFolder__Indent" style={{ '--depth': depth }}>
 		{children}
 	</div>
-);
+)
+
 const BookmarkFolderCollapse = ({ folder, folderCollapse, setFolderCollapse, children }) => {
 	if (folderCollapse.isCollapsed(folder.id)) {
 		return (
@@ -50,15 +54,15 @@ const BookmarkFolderCollapse = ({ folder, folderCollapse, setFolderCollapse, chi
 					<a
 						href="#Expand"
 						onClick={(e) => {
-							setFolderCollapse(folderCollapse.expand(folder.id));
-							e.preventDefault();
+							setFolderCollapse(folderCollapse.expand(folder.id))
+							e.preventDefault()
 						}}
 					>
 						{folder.title}
 					</a>
 				</div>
 			</section>
-		);
+		)
 	}
 	return (
 		<section className="BookmarkFolder">
@@ -66,8 +70,8 @@ const BookmarkFolderCollapse = ({ folder, folderCollapse, setFolderCollapse, chi
 				<a
 					href="#Collapse"
 					onClick={(e) => {
-						setFolderCollapse(folderCollapse.collapse(folder.id));
-						e.preventDefault();
+						setFolderCollapse(folderCollapse.collapse(folder.id))
+						e.preventDefault()
 					}}
 				>
 					{folder.title}
@@ -75,10 +79,11 @@ const BookmarkFolderCollapse = ({ folder, folderCollapse, setFolderCollapse, chi
 			</div>
 			{children}
 		</section>
-	);
-};
+	)
+}
+
 const BookmarkList = ({ folder, shortcutMap, search, drag, setDrag }) => {
-	const bookmarks = reorderBookmarks(drag, folder.id, filterBookmarks(folder.bookmarks, search));
+	const bookmarks = reorderBookmarks(drag, folder.id, filterBookmarks(folder.bookmarks, search))
 	return (
 		<div class="BookmarkList">
 			{bookmarks.map((b, index) => (
@@ -93,13 +98,15 @@ const BookmarkList = ({ folder, shortcutMap, search, drag, setDrag }) => {
 				</BookmarkDragDrop>
 			))}
 		</div>
-	);
-};
+	)
+}
+
 const classNameOfMap = (classNameMap) =>
 	Object.entries(classNameMap)
 		.filter(([, enabled]) => enabled === true)
 		.map(([className]) => className)
-		.join(' ');
+		.join(' ')
+
 const BookmarkDragDrop = ({ bookmark, position, drag, setDrag, children }) => {
 	return (
 		<div
@@ -109,25 +116,25 @@ const BookmarkDragDrop = ({ bookmark, position, drag, setDrag, children }) => {
 			})}
 			data-bookmark-drag-state={bookmark.state}
 			onDragStart={(e) => {
-				setDrag(Drag.start(bookmark, position));
-				e.dataTransfer.effectAllowed = 'move';
-				e.dataTransfer.setData('text/plain', bookmark.url);
+				setDrag(Drag.start(bookmark, position))
+				e.dataTransfer.effectAllowed = 'move'
+				e.dataTransfer.setData('text/plain', bookmark.url)
 			}}
 			onDragOver={(e) => {
 				if (drag) {
-					e.preventDefault();
+					e.preventDefault()
 				}
 			}}
 			onDragEnter={(e) => {
 				if (drag) {
-					e.preventDefault();
-					setDrag(drag.enterTo(position));
+					e.preventDefault()
+					setDrag(drag.enterTo(position))
 				}
 			}}
 			onDragLeave={(e) => {
 				// https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/relatedTarget
-				const exitedFrom = e.target;
-				const enteredTo = e.relatedTarget;
+				const exitedFrom = e.target
+				const enteredTo = e.relatedTarget
 				if (
 					drag &&
 					exitedFrom instanceof HTMLElement &&
@@ -135,28 +142,29 @@ const BookmarkDragDrop = ({ bookmark, position, drag, setDrag, children }) => {
 					enteredTo instanceof HTMLElement &&
 					enteredTo.classList.contains('BookmarkFolder')
 				) {
-					setDrag(drag.leave());
+					setDrag(drag.leave())
 				}
 			}}
 			onDragEnd={() => {
-				setDrag(undefined);
+				setDrag(undefined)
 			}}
 			onDrop={(e) => {
-				e.preventDefault();
+				e.preventDefault()
 				if (drag) {
-					moveBookmark(drag.bookmark, drag.calculateDestination()).catch(console.error);
-					setDrag(undefined);
+					moveBookmark(drag.bookmark, drag.calculateDestination()).catch(console.error)
+					setDrag(undefined)
 				}
 			}}
 		>
 			{children}
 		</div>
-	);
-};
+	)
+}
+
 const BookmarkComponent = ({ bookmark, shortcutMap, dragActive }) => {
-	const [openBookmarkEditor, setOpenBookmarkEditor] = useState(false);
-	const favicon = useContext(FaviconContext);
-	const shortcutKey = shortcutMap.getByBookmarkID(bookmark.id);
+	const [openBookmarkEditor, setOpenBookmarkEditor] = useState(false)
+	const favicon = useContext(FaviconContext)
+	const shortcutKey = shortcutMap.getByBookmarkID(bookmark.id)
 	return (
 		<div className="Bookmark">
 			<LinkComponent href={bookmark.url}>
@@ -171,8 +179,8 @@ const BookmarkComponent = ({ bookmark, shortcutMap, dragActive }) => {
 				className="BookmarkEditButton"
 				data-drag-active={dragActive}
 				onClick={(e) => {
-					setOpenBookmarkEditor(true);
-					e.preventDefault();
+					setOpenBookmarkEditor(true)
+					e.preventDefault()
 				}}
 			>
 				&hellip;
@@ -184,5 +192,5 @@ const BookmarkComponent = ({ bookmark, shortcutMap, dragActive }) => {
 				onRequestClose={() => setOpenBookmarkEditor(false)}
 			/>
 		</div>
-	);
-};
+	)
+}

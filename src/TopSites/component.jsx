@@ -1,24 +1,24 @@
-import { useContext } from 'react';
-import { FaviconContext } from '../infrastructure/favicon';
-import './component.css';
-import { filterTopSites } from './model';
-import { useTopSites } from './repository';
+import { useContext } from 'react'
+import { FaviconContext } from '../infrastructure/favicon'
+import './component.css'
+import { filterTopSites } from './model'
+import { useTopSites } from './repository'
 
 const TopSitesComponent = ({ search }) => {
-	const topSites = filterTopSites(useTopSites(), search);
+	const topSites = filterTopSites(useTopSites(), search)
 	return (
 		<div className="TopSites">
 			{topSites.map((s, i) => (
 				<TopSiteComponent key={i} topSite={s} />
 			))}
 		</div>
-	);
-};
+	)
+}
 
-export default TopSitesComponent;
+export default TopSitesComponent
 
 const TopSiteComponent = ({ topSite }) => {
-	const favicon = useContext(FaviconContext);
+	const favicon = useContext(FaviconContext)
 	return (
 		<div className="TopSite">
 			<a href={topSite.url}>
@@ -28,5 +28,5 @@ const TopSiteComponent = ({ topSite }) => {
 			</a>
 			<div className="TopSiteTitle">{topSite.title}</div>
 		</div>
-	);
-};
+	)
+}

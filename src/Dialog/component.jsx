@@ -1,20 +1,20 @@
-import { useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
+import { useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 
 const DialogComponent = ({ children, open, onRequestClose, className }) => {
-	const dialogRef = useRef(null);
+	const dialogRef = useRef(null)
 	useEffect(() => {
 		if (dialogRef.current === null) {
-			return;
+			return
 		}
 		if (open) {
-			dialogRef.current.showModal();
+			dialogRef.current.showModal()
 		} else {
-			dialogRef.current.close();
+			dialogRef.current.close()
 		}
-	}, [open]);
+	}, [open])
 	if (!open) {
-		return null;
+		return null
 	}
 	return createPortal(
 		<dialog
@@ -24,7 +24,7 @@ const DialogComponent = ({ children, open, onRequestClose, className }) => {
 			onClick={(e) => {
 				// Close the dialog when the backdrop is clicked
 				if (e.target === dialogRef.current) {
-					onRequestClose();
+					onRequestClose()
 				}
 			}}
 		>
@@ -33,7 +33,7 @@ const DialogComponent = ({ children, open, onRequestClose, className }) => {
 		// If open <dialog> element is moved, the style is broken.
 		// To avoid it, put <dialog> to the top level.
 		document.body
-	);
-};
+	)
+}
 
-export default DialogComponent;
+export default DialogComponent

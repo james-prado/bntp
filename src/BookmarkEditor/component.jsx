@@ -1,35 +1,35 @@
-import { useContext, useEffect, useState } from 'react';
-import { removeBookmark, updateBookmark } from '../Bookmarks/repository';
-import DialogComponent from '../Dialog/component';
-import { FaviconContext } from '../infrastructure/favicon';
-import LinkComponent from '../Link/component';
-import { shortcutKeyOf } from '../ShortcutKey/model';
-import { useShortcutMap } from '../ShortcutKey/repository';
-import './component.css';
-import { isValidEditingBookmark } from './model';
+import { useContext, useEffect, useState } from 'react'
+import { removeBookmark, updateBookmark } from '../Bookmarks/repository'
+import DialogComponent from '../Dialog/component'
+import { FaviconContext } from '../infrastructure/favicon'
+import LinkComponent from '../Link/component'
+import { shortcutKeyOf } from '../ShortcutKey/model'
+import { useShortcutMap } from '../ShortcutKey/repository'
+import './component.css'
+import { isValidEditingBookmark } from './model'
 
 const BookmarkEditorComponent = ({ open, bookmark, shortcutKey, onRequestClose }) => {
-	const [editingBookmark, setEditingBookmark] = useState(bookmark);
-	const [editingShortcutKey, setEditingShortcutKey] = useState(shortcutKey);
-	const [errorMessage, setErrorMessage] = useState();
-	const [shortcutMap, setShortcutMap] = useShortcutMap();
+	const [editingBookmark, setEditingBookmark] = useState(bookmark)
+	const [editingShortcutKey, setEditingShortcutKey] = useState(shortcutKey)
+	const [errorMessage, setErrorMessage] = useState()
+	const [shortcutMap, setShortcutMap] = useShortcutMap()
 	// Reset the state when the dialog is opened
 	useEffect(() => {
-		setEditingBookmark(bookmark);
-		setEditingShortcutKey(shortcutKey);
-		setErrorMessage(undefined);
-	}, [open]);
+		setEditingBookmark(bookmark)
+		setEditingShortcutKey(shortcutKey)
+		setErrorMessage(undefined)
+	}, [open])
 	// Reflect when it is updated in another tab
 	useEffect(() => {
-		setEditingBookmark(bookmark);
-	}, [bookmark]);
+		setEditingBookmark(bookmark)
+	}, [bookmark])
 	useEffect(() => {
-		setEditingShortcutKey(shortcutKey);
-	}, [shortcutKey]);
+		setEditingShortcutKey(shortcutKey)
+	}, [shortcutKey])
 	const closeAfter = (f) =>
 		void f()
 			.then(onRequestClose)
-			.catch((e) => setErrorMessage(String(e)));
+			.catch((e) => setErrorMessage(String(e)))
 	return (
 		<DialogComponent className="BookmarkEditor" open={open} onRequestClose={onRequestClose}>
 			<FormComponent
@@ -41,21 +41,22 @@ const BookmarkEditorComponent = ({ open, bookmark, shortcutKey, onRequestClose }
 				onRequestClose={onRequestClose}
 				onSubmit={() =>
 					closeAfter(async () => {
-						await updateBookmark(editingBookmark);
-						setShortcutMap(shortcutMap.set(editingBookmark.id, shortcutKey));
+						await updateBookmark(editingBookmark)
+						setShortcutMap(shortcutMap.set(editingBookmark.id, shortcutKey))
 					})
 				}
 				onRemove={() =>
 					closeAfter(async () => {
-						await removeBookmark(editingBookmark);
-						setShortcutMap(shortcutMap.set(editingBookmark.id, undefined));
+						await removeBookmark(editingBookmark)
+						setShortcutMap(shortcutMap.set(editingBookmark.id, undefined))
 					})
 				}
 			/>
 		</DialogComponent>
-	);
-};
-export default BookmarkEditorComponent;
+	)
+}
+
+export default BookmarkEditorComponent
 const FormComponent = ({
 	editingBookmark,
 	editingShortcutKey,
@@ -65,13 +66,13 @@ const FormComponent = ({
 	onSubmit,
 	onRemove,
 }) => {
-	const favicon = useContext(FaviconContext);
+	const favicon = useContext(FaviconContext)
 	return (
 		<form
 			className="BookmarkEditor__Form"
 			onSubmit={(e) => {
-				onSubmit();
-				e.preventDefault();
+				onSubmit()
+				e.preventDefault()
 			}}
 		>
 			<input
@@ -105,5 +106,5 @@ const FormComponent = ({
 				<input type="button" value="Remove" onClick={() => onRemove()} />
 			</div>
 		</form>
-	);
-};
+	)
+}

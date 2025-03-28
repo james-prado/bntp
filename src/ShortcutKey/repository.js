@@ -1,5 +1,5 @@
-import { useChromeStorage } from '../infrastructure/chromeStorage';
-import { ShortcutMap } from './model';
+import { useChromeStorage } from '../infrastructure/chromeStorage'
+import { ShortcutMap } from './model'
 
 export const useShortcutMap = () => {
 	const [entries, setEntries] = useChromeStorage({
@@ -7,6 +7,6 @@ export const useShortcutMap = () => {
 		key: 'v3.shortcutKeyMap',
 		defaultValue: [],
 		isType: (value) => Array.isArray(value),
-	});
-	return [new ShortcutMap(entries), (newMap) => setEntries(newMap.serialize())];
-};
+	})
+	return [new ShortcutMap(entries), (newMap) => setEntries(newMap.serialize())]
+}

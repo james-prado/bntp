@@ -1,27 +1,27 @@
-import { useGlobalKey } from './infrastructure';
-import { shortcutKeyOf } from './model';
+import { useGlobalKey } from './infrastructure'
+import { shortcutKeyOf } from './model'
 
 const ShortcutKeyComponent = ({ bookmarkFolders, shortcutMap }) => {
-	const bookmarks = bookmarkFolders.flatMap((f) => f.bookmarks);
+	const bookmarks = bookmarkFolders.flatMap((f) => f.bookmarks)
 	useGlobalKey((e) => {
 		if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
-			return;
+			return
 		}
-		const shortcutKey = shortcutKeyOf(e.key);
+		const shortcutKey = shortcutKeyOf(e.key)
 		if (!shortcutKey) {
-			return;
+			return
 		}
-		const bookmarkID = shortcutMap.getByShortcutKey(shortcutKey);
+		const bookmarkID = shortcutMap.getByShortcutKey(shortcutKey)
 		if (!bookmarkID) {
-			return;
+			return
 		}
-		const bookmark = bookmarks.find((b) => b.id === bookmarkID);
+		const bookmark = bookmarks.find((b) => b.id === bookmarkID)
 		if (!bookmark) {
-			return;
+			return
 		}
-		window.location.href = bookmark.url;
-	});
-	return null;
-};
+		window.location.href = bookmark.url
+	})
+	return null
+}
 
-export default ShortcutKeyComponent;
+export default ShortcutKeyComponent

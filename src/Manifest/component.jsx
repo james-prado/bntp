@@ -1,9 +1,9 @@
-import { useContext } from 'react';
-import { ChromeContext } from '../infrastructure/chrome';
+import { useContext } from 'react'
+import { ChromeContext } from '../infrastructure/chrome'
 
 const ManifestComponent = () => {
-	const chrome = useContext(ChromeContext);
-	const manifest = chrome.runtime.getManifest();
+	const chrome = useContext(ChromeContext)
+	const manifest = chrome.runtime.getManifest()
 	return (
 		<>
 			<div>
@@ -13,7 +13,7 @@ const ManifestComponent = () => {
 				<a href={`https://chrome.google.com/webstore/detail/${chrome.runtime.id}`}>Review on Web Store</a>
 			</div>
 		</>
-	);
-};
+	)
+}
 
-export default ManifestComponent;
+export default ManifestComponent

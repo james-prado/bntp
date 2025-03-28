@@ -102,6 +102,6 @@ const bookmarks = [
 		id: '0',
 		title: '',
 	},
-];
+]
 
-export default bookmarks;
+export default bookmarks

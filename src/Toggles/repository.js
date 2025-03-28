@@ -1,5 +1,5 @@
-import { useChromeStorage } from '../infrastructure/chromeStorage';
-import { defaultToggles, isToggles } from './model';
+import { useChromeStorage } from '../infrastructure/chromeStorage'
+import { defaultToggles, isToggles } from './model'
 
 export const useToggles = () =>
 	useChromeStorage({
@@ -7,4 +7,4 @@ export const useToggles = () =>
 		key: 'v3.toggles',
 		defaultValue: defaultToggles,
 		isType: isToggles,
-	});
+	})

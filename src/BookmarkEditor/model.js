@@ -1,1 +1,1 @@
-export const isValidEditingBookmark = (bookmark) => bookmark.title !== '' && bookmark.url !== '';
+export const isValidEditingBookmark = (bookmark) => bookmark.title !== '' && bookmark.url !== ''

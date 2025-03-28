@@ -15,6 +15,6 @@ const topSites = [
 		title: 'Google Calendar',
 		url: 'https://calendar.google.com/',
 	},
-];
+]
 
-export default topSites;
+export default topSites

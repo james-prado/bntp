@@ -1,8 +1,8 @@
-import DialogComponent from '../Dialog/component';
-import ManifestComponent from '../Manifest/component';
-import ThemesComponent from '../Themes/component';
-import TogglesComponent from '../Toggles/component';
-import './component.css';
+import DialogComponent from '../Dialog/component'
+import ManifestComponent from '../Manifest/component'
+import ThemesComponent from '../Themes/component'
+import TogglesComponent from '../Toggles/component'
+import './component.css'
 
 const PreferencesComponent = ({ open, onRequestClose }) => (
 	<DialogComponent className="Preferences" open={open} onRequestClose={onRequestClose}>
@@ -15,6 +15,6 @@ const PreferencesComponent = ({ open, onRequestClose }) => (
 			<ManifestComponent />
 		</div>
 	</DialogComponent>
-);
+)
 
-export default PreferencesComponent;
+export default PreferencesComponent

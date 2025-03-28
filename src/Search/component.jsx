@@ -1,4 +1,4 @@
-import './component.css';
+import './component.css'
 
 const SearchComponent = ({ value, onChange }) => {
 	return (
@@ -10,15 +10,15 @@ const SearchComponent = ({ value, onChange }) => {
 				onChange={(e) => onChange(e.target.value)}
 				onKeyDown={(e) => {
 					if (e.key === 'Escape') {
-						onChange('');
+						onChange('')
 						if (e.target instanceof HTMLInputElement) {
-							e.target.blur();
+							e.target.blur()
 						}
 					}
 				}}
 			/>
 		</div>
-	);
-};
+	)
+}
 
-export default SearchComponent;
+export default SearchComponent

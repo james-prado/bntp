@@ -1,45 +1,45 @@
 export const shortcutKeyOf = (s) => {
 	if (s.length < 1) {
-		return;
+		return
 	}
-	return s.charAt(0).toUpperCase();
-};
+	return s.charAt(0).toUpperCase()
+}
 
 export class ShortcutMap {
 	constructor(entries) {
-		this.serialize = () => [...this.entries];
-		const typedEntries = [];
-		const keySet = new Set();
-		const bookmarkSet = new Set();
+		this.serialize = () => [...this.entries]
+		const typedEntries = []
+		const keySet = new Set()
+		const bookmarkSet = new Set()
 		for (const [key, id] of entries) {
-			const sanitizedKey = shortcutKeyOf(key);
+			const sanitizedKey = shortcutKeyOf(key)
 			if (!sanitizedKey || !id || keySet.has(sanitizedKey) || bookmarkSet.has(id)) {
-				continue;
+				continue
 			}
-			keySet.add(sanitizedKey);
-			bookmarkSet.add(id);
-			typedEntries.push([sanitizedKey, id]);
+			keySet.add(sanitizedKey)
+			bookmarkSet.add(id)
+			typedEntries.push([sanitizedKey, id])
 		}
-		this.entries = typedEntries;
+		this.entries = typedEntries
 	}
 	getByBookmarkID(bookmarkID) {
 		for (const [key, id] of this.entries) {
 			if (id === bookmarkID) {
-				return key;
+				return key
 			}
 		}
 	}
 	getByShortcutKey(shortcutKey) {
 		for (const [key, id] of this.entries) {
 			if (key === shortcutKey) {
-				return id;
+				return id
 			}
 		}
 	}
 	set(bookmarkID, key) {
 		if (!key) {
-			return new ShortcutMap(this.entries.filter(([, id]) => id !== bookmarkID));
+			return new ShortcutMap(this.entries.filter(([, id]) => id !== bookmarkID))
 		}
-		return new ShortcutMap([[key, bookmarkID], ...this.entries]);
+		return new ShortcutMap([[key, bookmarkID], ...this.entries])
 	}
 }

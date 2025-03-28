@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import BookmarksComponent from '../Bookmarks/component';
-import NetworkStatusComponent from '../NetworkStatus/component';
-import PreferencesComponent from '../Preferences/component';
-import SearchComponent from '../Search/component';
-import { useToggles } from '../Toggles/repository';
-import TopSitesComponent from '../TopSites/component';
-import './component.css';
+import { useState } from 'react'
+import BookmarksComponent from '../Bookmarks/component'
+import NetworkStatusComponent from '../NetworkStatus/component'
+import PreferencesComponent from '../Preferences/component'
+import SearchComponent from '../Search/component'
+import { useToggles } from '../Toggles/repository'
+import TopSitesComponent from '../TopSites/component'
+import './component.css'
 
 const App = () => {
-	const [toggles] = useToggles();
-	const [search, setSearch] = useState('');
-	const [openPreferences, setOpenPreferences] = useState(false);
+	const [toggles] = useToggles()
+	const [search, setSearch] = useState('')
+	const [openPreferences, setOpenPreferences] = useState(false)
 	return (
 		<div className="App">
 			{toggles?.topSites ? (
@@ -26,6 +26,7 @@ const App = () => {
 			<PreferencesComponent open={openPreferences} onRequestClose={() => setOpenPreferences(false)} />
 			<NetworkStatusComponent />
 		</div>
-	);
-};
-export default App;
+	)
+}
+
+export default App

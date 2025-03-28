@@ -1,7 +1,7 @@
-import { useToggles } from './repository';
+import { useToggles } from './repository'
 
 const TogglesComponent = () => {
-	const [toggles, setToggles] = useToggles();
+	const [toggles, setToggles] = useToggles()
 	return (
 		<form>
 			<label>
@@ -29,7 +29,7 @@ const TogglesComponent = () => {
 				Top Sites
 			</label>
 		</form>
-	);
-};
+	)
+}
 
-export default TogglesComponent;
+export default TogglesComponent

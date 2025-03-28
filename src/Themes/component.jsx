@@ -1,10 +1,10 @@
-import { allColorSchemes, allThemes } from './model';
-import { useSelectedColorScheme, useSelectedTheme } from './repository';
-import { useThemeStyle } from './style';
+import { allColorSchemes, allThemes } from './model'
+import { useSelectedColorScheme, useSelectedTheme } from './repository'
+import { useThemeStyle } from './style'
 
 const ThemesComponent = () => {
-	const [selectedTheme, setSelectedTheme] = useSelectedTheme();
-	const [selectedColorScheme, setSelectedColorScheme] = useSelectedColorScheme();
+	const [selectedTheme, setSelectedTheme] = useSelectedTheme()
+	const [selectedColorScheme, setSelectedColorScheme] = useSelectedColorScheme()
 	return (
 		<>
 			<form>
@@ -36,16 +36,16 @@ const ThemesComponent = () => {
 				))}
 			</form>
 		</>
-	);
-};
+	)
+}
 
-const capitalize = (s) => s.replace(/^\w/, (c) => c.toUpperCase());
+const capitalize = (s) => s.replace(/^\w/, (c) => c.toUpperCase())
 
 export const SubscribeThemeComponent = () => {
-	const [selectedTheme] = useSelectedTheme();
-	const [selectedColorScheme] = useSelectedColorScheme();
-	useThemeStyle(selectedTheme, selectedColorScheme);
-	return null;
-};
+	const [selectedTheme] = useSelectedTheme()
+	const [selectedColorScheme] = useSelectedColorScheme()
+	useThemeStyle(selectedTheme, selectedColorScheme)
+	return null
+}
 
-export default ThemesComponent;
+export default ThemesComponent
