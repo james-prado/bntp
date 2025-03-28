@@ -27,9 +27,12 @@ const BookmarkFoldersComponent = ({ bookmarkFolders, shortcutMap, search }) => {
 	const [toggles] = useToggles()
 	const [folderCollapse, setFolderCollapse] = useFolderCollapse()
 	const [drag, setDrag] = useState()
+	const exludeFolders = [bookmarkFolders.find(f => f.title == 'Bookmarks Bar')?.id]
 	return (
 		<div className="BookmarkFolders">
-			{bookmarkFolders.filter(f => f.depth <= 1).map((f, i) => (
+			{bookmarkFolders.filter(f => {
+				return f.depth <= 1 && !exludeFolders.includes(f.id) && !exludeFolders.includes(f.parentID)
+			}).map((f, i) => (
 				<BookmarkFolderIndent key={i} depth={toggles.indent ? f.depth : 0}>
 					<BookmarkFolderCollapse folder={f} folderCollapse={folderCollapse} setFolderCollapse={setFolderCollapse}>
 						<BookmarkList folder={f} shortcutMap={shortcutMap} search={search} drag={drag} setDrag={setDrag} />

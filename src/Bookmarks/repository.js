@@ -39,7 +39,7 @@ const subscribeBookmarks = (chrome, handler) => {
 	}
 }
 
-export const traverseBookmarkTree = (tree, depth = 0) =>
+export const traverseBookmarkTree = (tree, parent = undefined, depth = 0) =>
 	tree.flatMap((node) => {
 		if (node.children === undefined) {
 			return []
@@ -47,10 +47,11 @@ export const traverseBookmarkTree = (tree, depth = 0) =>
 		const childFolders = node.children.filter((child) => child.url === undefined)
 		const childBookmarks = node.children.filter((child) => child.url !== undefined)
 		if (childBookmarks.length === 0) {
-			return traverseBookmarkTree(childFolders, depth)
+			return traverseBookmarkTree(childFolders, parent, depth)
 		}
 		const thisFolder = {
 			id: node.id,
+			parentID: parent,
 			depth,
 			title: node.title,
 			bookmarks: childBookmarks.map((b) => ({
@@ -60,7 +61,7 @@ export const traverseBookmarkTree = (tree, depth = 0) =>
 				folderID: node.id,
 			})),
 		}
-		return [thisFolder, ...traverseBookmarkTree(childFolders, depth + 1)]
+		return [thisFolder, ...traverseBookmarkTree(childFolders, thisFolder.id, depth + 1)]
 	})
 
 export const updateBookmark = async (bookmark) => {
