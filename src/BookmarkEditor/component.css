@@ -12,7 +12,7 @@ dialog.BookmarkEditor {
 	background-color: var(--palette-3);
 	border-style: none;
 	border-radius: var(--size-form-control-border-radius);
-	box-shadow: 0 0 var(--size-wide-gap) rgba(0, 0, 0, 0.5);
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 12px 3px;
 }
 
 dialog.BookmarkEditor::backdrop {
