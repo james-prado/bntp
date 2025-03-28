@@ -1,7 +1,19 @@
 .App {
+	width: 100%;
+	max-width: 160ch;
+	margin: auto;
+}
+
+@media screen and (max-width: 1440px) {
+	.App {
+		max-width: 140ch;
+	}
+}
+
+.App {
 	display: grid;
-	row-gap: var(--size-gap);
-	padding: var(--size-gap) var(--size-wide-gap);
+	row-gap: var(--size-wide-gap);
+	padding: var(--size-wide-gap);
 }
 
 .App__Header {

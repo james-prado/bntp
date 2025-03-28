@@ -6,7 +6,7 @@ const SearchComponent = ({ value, onChange }) => {
 			<input
 				type="text"
 				value={value}
-				placeholder="Find bookmarks..."
+				placeholder="Search bookmarks..."
 				onChange={(e) => onChange(e.target.value)}
 				onKeyDown={(e) => {
 					if (e.key === 'Escape') {

@@ -4,6 +4,7 @@
 
 .Search {
 	display: grid;
+	font-size: 15px;
 	padding: var(--size-gap) var(--size-wide-gap);
 	border-radius: 3px;
 	background-color: var(--palette-2);
