@@ -26,6 +26,10 @@
 	margin-left: calc(var(--size-folder-indent) * var(--depth));
 }
 
+.BookmarkFolder__Indent[data-depth='0'] .BookmarkFolder__Heading {
+	font-weight: 500;
+}
+
 .BookmarkFolder {
 	display: flex;
 	gap: var(--size-folder-item-gap);

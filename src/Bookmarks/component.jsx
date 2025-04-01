@@ -44,7 +44,7 @@ const BookmarkFoldersComponent = ({ bookmarkFolders, shortcutMap, search }) => {
 }
 
 const BookmarkFolderIndent = ({ depth, children }) => (
-	<div className="BookmarkFolder__Indent" style={{ '--depth': depth }}>
+	<div className="BookmarkFolder__Indent" data-depth={depth} style={{ '--depth': depth }}>
 		{children}
 	</div>
 )
